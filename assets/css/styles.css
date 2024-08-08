@@ -1,0 +1,641 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --orange: #fc8e23; /* Define your custom color */
+  --pink: #fa0459; /* Define your custom color */
+  --peach: #fb4141; /* Define your custom color */
+  --white: #fff; /* Define your custom color */
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f4f4f4;
+  background-color: #555;
+}
+/* SEMANTIC CONTAINERS */
+
+header .container {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+
+
+footer .container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+main {
+  height: 100svh;
+}
+/* HEADER */
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: black; /* Set to your desired color */
+  text-decoration: none; /* Remove underline */
+}
+
+/* Visited state */
+a:visited {
+  color: black; /* Same as the normal state */
+}
+
+/* Hover state */
+a:hover {
+  color: grey; /* Change to grey when hovered over */
+}
+
+/* Active state */
+a:active {
+  color: grey; /* Same as hover or another desired color */
+}
+
+/* HEADER / NAVABR */
+header{
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  transition: all 300ms ease-in-out;  /* background-color: #fc8e23; */
+ background-color: transparent;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); */
+}
+
+header.active{
+  background-color: white;
+}
+
+.logo {
+  width:100px;
+  transition: opacity 5.5s ease-in-out; /* Smooth transition for opacity */
+
+}
+.logo-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+
+/*-------------*\
+    #HAMBURGER
+\*-------------*/
+
+/* HAMBURGER CURSOR */
+.hamburger {
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+/* ALL THREE LINES */
+.bar {
+  width: 18px;
+  height: 2px;
+  margin: 5px;
+  background-color: white;
+}
+.bar.active {
+
+  background-color: black;
+  transition: all 300ms ease-in-out;  /* background-color: #fc8e23; */
+
+}
+
+/* Styling for the cross state */
+.cross .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-7px, 3px);
+}
+
+.cross .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.cross .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-7px, -3px);
+}
+
+/* Transition for smooth animation */
+.js-menuToggle .bar {
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Add smooth transition for animation */
+}
+.header-icon{
+  color: white;
+  font-size: 18px;
+}
+.header-icon.active{
+  color: black;
+  transition: all 300ms ease-in-out;  /* background-color: #fc8e23; */
+
+}
+
+
+
+
+/* MOBILE MENU */
+
+.nav-menu {
+  display: block;
+  background-color: var(--white);
+  font-size: 25px;
+  text-transform: uppercase;
+}
+
+.list-item-chevron {
+  font-size: 15px;
+}
+
+/* .list-item {
+  letter-spacing: 2px;
+  font-weight: 700;
+  border-bottom: black solid 1px;
+  padding: 20px;
+  font-size: 18px;
+} */
+
+.list-item a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-item-text {
+  margin-right: auto;
+}
+
+.nav-menu-icon {
+  flex-basis: 30px;
+  margin-right: 10px;
+}
+
+
+
+/* OVERLAY JS CLASS */
+.js-navOverlay.active {
+  opacity: 1;
+}
+
+/*----------------*\
+    #PUSH-NAV
+\*----------------*/
+
+/* PUSHNAV RESET */
+ul.pushNav {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+/* PUSHNAV / MOIBLE DROP DOWN MENU */
+.pushNav {
+  height: 100svh;
+  position: fixed;
+  z-index: 9999;
+  overflow: hidden;
+  background: var(--white);
+  width: 100%;
+  right: -100%;
+  top: 104px;
+  transition: cubic-bezier(0.51, 0.03, 0.64, 0.28) 0.3s;
+  overflow-y: scroll;
+  font-weight: 700;
+  font-size: 25PX;
+}
+
+
+.pushNavEndListItem {
+  padding-bottom: 12px;
+}
+
+.mobileMenuIsOpen {
+  overflow: auto;
+  height: 100%;
+}
+
+/* PUSHNAV JS CLASS FOR THE MENU TO SLIDE IN BAK TO 0 */
+.js-pushmobileMenu.isOpen,
+.pushNav_Level_Right.isOpen {
+  right: 0;
+}
+
+
+/* PUSHNAV LEVEL CURSOR */
+.closeLevel,
+.openLevel {
+  cursor: pointer;
+}
+
+/* PUSHNAV LEVEL LINKS */
+.openLevel,
+.pushNav a {
+  padding: 1rem;
+  display: flex;
+  justify-content: left;
+  gap: 2rem;
+  align-items: center;
+  transition: background 0.3s ease-in-out;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.4);
+  font-size: 18px;
+}
+
+/* PUSHNAV LEVEL ICONS */
+.openLevel i {
+  flex-basis: 30px;
+  text-align: center;
+}
+/* PUSHNAV LEVEL ICONS */
+.pushNav i {
+  text-align: center;
+}
+/* PUSHNAV LEVEL ICONS */
+.pushNav_Level_Right i {
+  flex-basis: 30px;
+  text-align: center;
+}
+
+/* PUSHNAV LEVEL ICONS */
+.openLevel > .fa-chevron-right {
+  margin-left: auto;
+}
+
+.opacity{
+  opacity: 0;
+  cursor: none;
+}
+
+.hdg {
+  background-color: #cfcfcf;
+  font-size: 18px;
+  opacity: 1;
+  padding: 1rem;
+  display: flex;
+  justify-content: left;
+  gap: 2rem;
+}
+
+image .ovalcircle{
+margin-left: 5px;
+}
+
+.oval-menu-icon{
+  flex-basis: 30px;
+}
+
+
+
+/* .no-scroll {
+  overflow: hidden;
+} */
+
+
+
+
+/*----------------*\
+¦---HER0-SECTION---¦
+\*----------------*/
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  height: 100svh;
+}
+
+
+
+.hero-btn {
+  padding: 10px 40px;
+  background-color: var(--third-color);
+  border-radius: 10px;
+  color: var(--secondary-color);
+  letter-spacing: 2px;
+}
+
+.video-box {
+  position: relative;
+  width: 100%;
+  height: 50svh;
+  display: flex;
+}
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+
+:root {
+  --carousel-height: 450px;
+  --speed-fast: 0.12s;
+  --speed-medium: 0.22s;
+  --speed-slow: 0.4s;
+}
+
+
+.carousel {
+  position: relative;
+  height: 50svh;
+  width: 100%;
+  z-index: 1;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.06), 0px 6px 24px 0px rgba(0, 0, 0, 0.12);
+  transition: var(--speed-slow) ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------------*\
+¦---SCROLLING-MOBILE-HEADER-JS----¦
+\*-------------------------------*/
+
+.scroll-down header {
+  transform: translate3d(0, -100%, 0);}
+
+  .scroll-up header {
+  transform: translate3d(0, 0, 0);
+  /* box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.3); */
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 989px) {
+  :root {
+      --carousel-height: 320px;
+  }
+
+  .carousel {
+  }
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  transition: var(--speed-medium) ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.slide img {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.description {
+  --padding-vertical: 0.5rem;
+  --padding-horizontal: 1.5rem;
+  --desc-height: 32px;
+  --top-offset: 4px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc((var(--desc-height) + var(--padding-vertical) * 2 + var(--top-offset)) * -1);
+  height: var(--desc-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding-top: var(--padding-vertical);
+  padding-bottom: var(--padding-vertical);
+  padding-left: var(--padding-horizontal);
+  padding-right: var(--padding-horizontal);
+  border-radius: 8px;
+  text-align: center;
+  line-height: 1;
+  transition: var(--speed-medium) ease;
+}
+
+
+
+.dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: white;
+}
+
+.timer {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  left: 8px;
+  height: 4px;
+  border-radius: 100vh;
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  width: 0;
+  z-index: 10;
+}
+
+.nav-arrow {
+  --arrow-width: 64px;
+  aspect-ratio: 1;
+  position: absolute;
+  top: calc(var(--carousel-height) / 2 - var(--arrow-width) / 2);
+  background: #fff;
+  transition: var(--speed-slow) ease;
+  width: 64px;
+  border-radius: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-arrow svg {
+  transition: 0.2s ease-in-out;
+  fill: #000;
+}
+
+.nav-arrow:hover {
+  background-color: #000;
+}
+
+.nav-arrow:hover svg {
+  fill: #fff;
+}
+
+.nav-arrow.prev:hover svg {
+  transform: translateX(-4px);
+}
+
+.nav-arrow.next:hover svg {
+  transform: translateX(4px);
+}
+
+.nav-arrow.prev {
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.nav-arrow.next {
+  right: 0;
+  transform: translateX(50%);
+}
+
+.pause-play-button {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.pause-play-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.pause-play-button svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+.pause-play-button span {
+  white-space: nowrap;
+}
+
+
+@media screen and (min-width: 767px) {
+  .description {
+      left: auto;
+      right: auto;
+  }
+}
