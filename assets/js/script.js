@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const headerIcons = document.querySelectorAll(".header-icon"); // Select all header icon elements
   const bars = document.querySelectorAll(".bar"); // Select all header icon elements
   const originalLogoSrc = "assets/images/stickerneeks-b-and-w-no-bg.png"; // Original logo src
-  const newLogoSrc = "assets/images/stickerneeks-color-no-bg.png"; // New logo src to be used when menu is open
+  const newLogoSrc = "assets/images/stickerneeks-color.png"; // New logo src to be used when menu is open
 
   function toggleHeaderBackground() {
     if (mobileMenuLevelZero.classList.contains("isOpen") || window.pageYOffset >20) {
