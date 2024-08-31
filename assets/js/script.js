@@ -145,85 +145,68 @@ updateMenuState();
 
 
 
-const initSlider = () => {
-  const imageList = document.querySelector(".slider-wrapper .image-list");
-  const slideButtons = document.querySelectorAll(
-    ".slider-wrapper .slide-button"
-  );
-  const sliderScrollbar = document.querySelector(
-    ".slider-container .slider-scrollbar"
-  );
-  const scrollbarThumb = sliderScrollbar.querySelector(".scrollbar-thumb");
-  const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
-  const firstImage = imageList.firstElementChild;
-  const computedStyle = getComputedStyle(imageList); // Get the computed style of the image list
-  const imageWidth =
-    firstImage.clientWidth + parseInt(computedStyle.gridColumnGap); // Include grid gap in image width
+document.addEventListener("DOMContentLoaded", function () {
+  const slides = document.querySelectorAll(".slide");
+  const dotsContainer = document.querySelector(".dots");
+  const prevArrow = document.querySelector(".nav-arrow.prev");
+  const nextArrow = document.querySelector(".nav-arrow.next");
+  const pausePlayButton = document.querySelector(".pause-play-button");
+  let currentIndex = 0;
+  let slideInterval;
+  let isPaused = false;
 
-  scrollbarThumb.addEventListener("mousedown", (e) => {
-    const startX = e.clientX;
-    const thumbPosition = scrollbarThumb.offsetLeft;
-
-    // Uodate thumb position on mouse move
-    const handleMouseMove = (e) => {
-      const deltaX = e.clientX - startX;
-      const newThumbPosition = thumbPosition + deltaX;
-      const maxThumbPosition =
-        sliderScrollbar.getBoundingClientRect().width -
-        scrollbarThumb.offsetWidth;
-
-      const boundedPosition = Math.max(
-        0,
-        Math.min(maxThumbPosition, newThumbPosition)
-      );
-      const scrollPosition =
-        (boundedPosition / maxThumbPosition) * maxScrollLeft;
-
-      scrollbarThumb.style.left = `${boundedPosition}px`;
-      imageList.scrollLeft = scrollPosition;
-    };
-    // remove event listener on mouse up
-    const handleMouseUp = () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-    // add event listener for drag interaction
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
+  // Create dots
+  slides.forEach((_, index) => {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      if (index === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => goToSlide(index));
+      dotsContainer.appendChild(dot);
   });
 
-  // Slide images according to the slide button clicks
-  slideButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const direction = button.id === "prev-slide" ? -1 : 1;
-      const scrollAmount = imageWidth * direction;
-      imageList.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    });
-  });
+  const dots = document.querySelectorAll(".dot");
 
-  const handleSlideButtons = () => {
-    slideButtons[0].style.display =
-      imageList.scrollLeft <= 0 ? "none" : "block";
-    slideButtons[1].style.display =
-      imageList.scrollLeft >= maxScrollLeft ? "none" : "block";
-  };
+  function goToSlide(index) {
+      slides[currentIndex].classList.remove("active");
+      dots[currentIndex].classList.remove("active");
+      currentIndex = index;
+      slides[currentIndex].classList.add("active");
+      dots[currentIndex].classList.add("active");
+      resetTimer();
+  }
 
-  imageList.addEventListener("scroll", () => {
-    handleSlideButtons();
-    updateScrollThumbPosition(); // Update scrollbar thumb position when the slider is scrolled
-  });
+  function nextSlide() {
+      let newIndex = (currentIndex + 1) % slides.length;
+      goToSlide(newIndex);
+  }
 
-  const updateScrollThumbPosition = () => {
-    const scrollPosition = imageList.scrollLeft;
-    const thumbPosition =
-      (scrollPosition / maxScrollLeft) *
-      (sliderScrollbar.clientWidth - scrollbarThumb.offsetWidth);
-    scrollbarThumb.style.left = `${thumbPosition}px`;
-  };
+  function prevSlide() {
+      let newIndex = (currentIndex - 1 + slides.length) % slides.length;
+      goToSlide(newIndex);
+  }
 
-  // Call handleSlideButtons initially to set initial button visibility
-  handleSlideButtons();
-  updateScrollThumbPosition();
-};
+  function resetTimer() {
+      if (slideInterval) clearInterval(slideInterval);
+      if (!isPaused) {
+          slideInterval = setInterval(nextSlide, 3000);
+      }
+  }
 
-window.addEventListener("load", initSlider);
+  function togglePausePlay() {
+      if (isPaused) {
+          pausePlayButton.querySelector("span").textContent = "Pause";
+          isPaused = false;
+          resetTimer();
+      } else {
+          pausePlayButton.querySelector("span").textContent = "Play";
+          isPaused = true;
+          clearInterval(slideInterval);
+      }
+  }
+
+  pausePlayButton.addEventListener("click", togglePausePlay);
+  nextArrow.addEventListener("click", nextSlide);
+  prevArrow.addEventListener("click", prevSlide);
+
+  resetTimer(); // Start the automatic slideshow
+});
