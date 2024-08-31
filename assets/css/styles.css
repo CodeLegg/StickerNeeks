@@ -56,7 +56,7 @@ main {
 
 .top-bar-item {
   display: inline-block;
-  padding: 0 1.5rem; /* Add padding to give space between items */
+  padding: 0 2rem; /* Add padding to give space between items */
   white-space: nowrap;
 }
 
