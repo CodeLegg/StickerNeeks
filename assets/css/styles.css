@@ -40,9 +40,9 @@ main {
 /* =========== MOBILE BAR START  ============ */
 .top-bar {
   background-color: var(--lazy-shell-red);
-  font-size: 11px;
+  font-size: 0.6875rem;
   text-align: center;
-  line-height: 22px;
+  line-height: 1.375rem;
   text-transform: uppercase;
   font-weight: 400;
   color: var(--white);
@@ -56,14 +56,14 @@ main {
 
 .top-bar-item {
   display: inline-block;
-  padding: 0 3rem; /* Add padding to give space between items */
+  padding: 0 2rem; /* Reduced padding for better mobile view */
   white-space: nowrap;
-  font-size: 11px;
+  font-size: 0.6875rem; /* Consistent with the base font size */
 }
 
 .marquee {
   display: flex;
-  animation: marquee 40s linear infinite;
+  animation: marquee 25s linear infinite; /* Shorter duration for smoother scrolling on mobile */
   justify-content: center;
 }
 
@@ -386,9 +386,6 @@ margin-left: 5px;
 
 /* CTA BANNER */
 
-.cta-banner {
-
-}
 :root {
   --carousel-height: 450px;
   --speed-fast: 0.12s;
