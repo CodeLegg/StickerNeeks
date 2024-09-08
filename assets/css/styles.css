@@ -63,7 +63,7 @@ main {
 
 .marquee {
   display: flex;
-  animation: marquee 25s linear infinite; /* Shorter duration for smoother scrolling on mobile */
+  animation: marquee 40s linear infinite; /* Shorter duration for smoother scrolling on mobile */
   justify-content: center;
 }
 
