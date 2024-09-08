@@ -58,6 +58,7 @@ main {
   display: inline-block;
   padding: 0 3rem; /* Add padding to give space between items */
   white-space: nowrap;
+  font-size: 11px;
 }
 
 .marquee {
