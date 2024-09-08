@@ -40,9 +40,9 @@ main {
 /* =========== MOBILE BAR START  ============ */
 .top-bar {
   background-color: var(--lazy-shell-red);
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
-  line-height: 21px;
+  line-height: 25px;
   text-transform: uppercase;
   font-weight: 400;
   color: var(--white);
@@ -62,16 +62,16 @@ main {
 
 .marquee {
   display: flex;
-  animation: marquee 40s linear infinite;
+  animation: marquee 50s linear infinite;
   justify-content: center;
 }
 
 @keyframes marquee {
   0% {
-    transform: translateX(450%);
+    transform: translateX(400%);
   }
   100% {
-    transform: translateX(-450%);
+    transform: translateX(-400%);
   }
 }
 
