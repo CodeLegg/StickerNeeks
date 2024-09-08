@@ -40,7 +40,7 @@ main {
 /* =========== MOBILE BAR START  ============ */
 .top-bar {
   background-color: var(--lazy-shell-red);
-  font-size: 10px;
+  
   text-align: center;
   line-height: 22px;
   text-transform: uppercase;
@@ -58,6 +58,7 @@ main {
   display: inline-block;
   padding: 0 2rem; /* Add padding to give space between items */
   white-space: nowrap;
+  font-size: 10px;
 }
 
 .marquee {
